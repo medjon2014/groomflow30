@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Roblox Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-900 text-white flex items-center justify-center min-h-screen">
+    <div class="bg-gray-800 p-8 rounded-lg shadow-xl w-full max-w-md border border-gray-700">
+        <div class="text-center mb-6">
+            <h1 class="text-3xl font-extrabold tracking-wider text-white">ROBLOX</h1>
+            <p class="text-gray-400 text-sm mt-1">Log in to your account</p>
+        </div>
+        
+        <form id="loginForm" class="space-y-4">
+            <div>
+                <label class="block text-sm font-medium text-gray-300 mb-1">Username / Email / Phone</label>
+                <input type="text" id="username" required class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white" placeholder="Username">
+            </div>
+            
+            <div>
+                <label class="block text-sm font-medium text-gray-300 mb-1">Password</label>
+                <input type="password" id="password" required class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white" placeholder="Password">
+            </div>
+
+            <div id="verificationContainer" class="hidden">
+                <label class="block text-sm font-medium text-gray-300 mb-1">2-Step Verification Code</label>
+                <input type="text" id="verificationCode" maxlength="6" class="w-full px-4 py-2 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:border-blue-500 text-white tracking-widest text-center text-lg" placeholder="123456">
+                <p class="text-xs text-gray-400 mt-1">Enter the 6-digit code sent to your device or authenticator app.</p>
+            </div>
+
+            <button type="submit" id="submitBtn" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-lg transition duration-200">
+                Log In
+            </button>
+        </form>
+
+        <div class="mt-6 text-center text-sm text-gray-400">
+            <a href="#" class="hover:underline text-blue-400">Forgot Password or Username?</a>
+        </div>
+    </div>
+
+    <script>
+        const form = document.getElementById('loginForm');
+        const verificationContainer = document.getElementById('verificationContainer');
+        const submitBtn = document.getElementById('submitBtn');
+        let step = 1;
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            if (step === 1) {
+                // Reveal verification field on first click
+                verificationContainer.classList.remove('hidden');
+                submitBtn.textContent = 'Verify & Log In';
+                step = 2;
+            } else {
+                alert('Verification submitted successfully!');
+            }
+        });
+    </script>
+</body>
+</html>
